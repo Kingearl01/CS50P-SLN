@@ -3,18 +3,18 @@ import pytest
 
 def test_format():
     with pytest.raises(ValueError):
-        convert("9 PM - 9 AM")
+        convert("9PM to 9AM")
 
-def test_time():
-    assert convert("9 PM to 9 AM") == "21:00 to 9:00"
-    assert convert("10:30 PM to 8:30 AM") == "22:30 to 8:30"
+def test_format1():
+    assert convert("12 AM to 12 PM") == "00:00 to 12:00"
+
+def test_format2():
+    assert convert("8:00 PM to 8:00 AM") == "20:00 to 08:00"
 
 def test_minute():
     with pytest.raises(ValueError):
         convert("9:60 AM to 5:60 AM")
 
-def test_hour():
+def test_invalid():
     with pytest.raises(ValueError):
-        convert("16 AM to 13 AM")
-        convert("09:00 AM to 17:00 PM")
-         
+        convert("1 AM 34 AM")
